@@ -4,6 +4,7 @@
 *.pdf
 pgdata
 venv
+.vscode
 __pycache__
 .DS_Store
 local_settings.py
