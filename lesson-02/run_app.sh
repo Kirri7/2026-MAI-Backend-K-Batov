@@ -12,6 +12,10 @@ function main()
     echo "Failed to run gunicorn..."
     return 1
   fi
+    docker run -d -p 80:80 \
+      -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf \
+      -v $(pwd)/public:/usr/share/nginx/html/public \
+      nginx:latest
 }
 
 main $@
