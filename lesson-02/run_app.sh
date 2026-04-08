@@ -13,8 +13,8 @@ function main()
     return 1
   fi
     docker run -d -p 80:80 \
-      -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf \
-      -v $(pwd)/public:/usr/share/nginx/html/public \
+      -v $(pwd)/nginx/nginx.conf:/etc/nginx/nginx.conf \
+      -v $(pwd)/nginx/public:/usr/share/nginx/html/public \
       nginx:latest
 }
 
