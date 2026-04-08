@@ -28,7 +28,7 @@ def generate_password() -> str:
     time.sleep(0.05) # thinking...
     return password
 
-
+# WSGI -> Web Server Gateway Interface
 def app(environ, start_response):
     password = generate_password()
     data = f"Your password: {password}\n".encode()
