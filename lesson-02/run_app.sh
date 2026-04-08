@@ -17,6 +17,7 @@ function main()
     #   -v $(pwd)/nginx/public:/usr/share/nginx/html/public \
     #   nginx:latest
     docker restart mynginx
+    # docker attach mynginx
 }
 
 main $@
