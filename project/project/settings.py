@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-mvzf86l=%&$t1x$)(s^dbpn_km=o@eog6&#ecan9xlf*0w)cil
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'gunicorn_django']
 
 
 # Application definition
