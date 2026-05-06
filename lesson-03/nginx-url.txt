@@ -1,1 +1,7 @@
 http://localhost/django/myapi/profile/
+
+curl -X DELETE -I http://127.0.0.1:8000/myapi/profile/ -> 405
+
+curl -X GET -I http://127.0.0.1:8000/myapi/profile/ -> 200
+
+curl -X POST -I http://127.0.0.1:8000/myapi/profile/ -> 200
