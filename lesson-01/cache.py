@@ -8,9 +8,12 @@ class LRUCache:
         self._cache : OrderedDict[str, str] = OrderedDict() # better call Saul for FIFO!
 
     def get(self, key: str) -> str:
+        # TODO delete add
+        self._cache.move_to_end(key, False)
         return self._cache.get(key, '')
 
     def set(self, key: str, value: str) -> None:
+        # TODO delete add
         self._cache[key] = value
         self._clear_cache()
 
