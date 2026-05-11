@@ -1,5 +1,15 @@
 # MAI-Backend
 
+Запуск lesson-06:
+```
+1) git clone
+2) make migrate
+3) проверить существование nginx на localhost:80
+3) вставить первого пользователя curl -X POST http://127.0.0.1:80/django/dbapp/users/create -d "username=user1" -d "email=user1@mail.org"
+4) вставить курс curl -X POST http://127.0.0.1:80/django/dbapp/courses/create -d "title=Python Django" -d "description=For beginners" -d "author_id=1"
+5) посетить http://localhost/django/dbapp/search?q=a
+```
+
 ## [Лекция #1. Интернет vs. www](lesson-01)
 На которой расскажут про курс, чем программная инженерия отличается от программирования, что такое [интернет](https://youtu.be/k1BneeJTDcU), чем интернет отличается от www, архитектуры современных веб-приложений, и расскажут про URL.
 
