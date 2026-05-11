@@ -4,7 +4,7 @@ from django.views.decorators.http import require_http_methods
 # TODO show decorators
 
 @require_http_methods(["GET", "POST"])
-def get_profile():
+def get_profile(request):
     data = {
         "user": "Some Human",
         "email": "some@hum.an",
@@ -13,7 +13,7 @@ def get_profile():
     return JsonResponse(data)
 
 @require_http_methods(["GET", "POST"])
-def get_products():
+def get_products(request):
     data = {
         "products": [
             {"id": 1, "name": "sticker", "price": 10},
@@ -23,7 +23,7 @@ def get_products():
     return JsonResponse(data)
 
 @require_http_methods(["GET", "POST"])
-def get_category(category_id):
+def get_category(request, category_id):
     data = {
         "category_id": category_id,
         "category_name": "office",
