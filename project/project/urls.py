@@ -24,4 +24,5 @@ urlpatterns = [
     path('', main_view),
     path('movies/', include('movies.urls')),
     path('myapi/', include('myapi.urls')),
+    path('dbapp/', include('dbapp.urls')),
 ]
