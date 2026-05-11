@@ -14,8 +14,9 @@ def search_courses(request: HttpRequest):
 
     courses = Course.objects.filter(
         Q(title__icontains=query) | 
-        Q(description__icontains=query)
-    ).values('id', 'title', 'description')
+        Q(description__icontains=query) |
+        Q(author__username__icontains=query)
+    ).values('id', 'title', 'description', 'author__username')
 
     data = {'results': list(courses)}
     return JsonResponse(data)
