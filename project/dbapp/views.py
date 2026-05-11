@@ -1,8 +1,9 @@
+from django.db import IntegrityError, transaction
 from django.http.request import HttpRequest
 from django.http import JsonResponse
 from django.db.models import Q
 from django.views.decorators.http import require_GET, require_POST
-from .models import Course, User
+from .models import Course, User, UserProfile
 
 
 @require_GET
@@ -58,8 +59,49 @@ def create_course(request: HttpRequest):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
-
 # curl -X POST http://127.0.0.1:8000/dbapp/courses/create \
 # -d "title=Python Django" \
 # -d "description=For beginners" \
 # -d "author_id=1"
+
+
+@require_POST
+def create_user(request: HttpRequest):
+    try:
+        username = request.POST.get('username', '').strip()
+        email = request.POST.get('email', '').strip()
+        phone = request.POST.get('phone', '').strip()
+        bio = request.POST.get('bio', '').strip()
+
+        if not username or not email:
+            return JsonResponse({'error': 'Username and email are required'}, status=400)
+
+        with transaction.atomic():
+            user = User.objects.create(
+                username=username,
+                email=email
+            )
+            UserProfile.objects.create(
+                user=user,
+                phone_number=phone,
+                bio=bio if bio else None
+            )
+
+        return JsonResponse({
+            'id': user.id,    # type: ignore
+            'email': user.email,
+            'phone': user.profile.phone_number,    # type: ignore
+            'message': 'User created successfully'
+        }, status=201)
+
+    except IntegrityError as e:
+        error_msg = str(e)
+        if 'username' in error_msg or 'email' in error_msg:
+            return JsonResponse({'error': 'Username or email already exists'}, status=400)
+        return JsonResponse({'error': 'Database error'}, status=500)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+# curl -X POST http://127.0.0.1:8000/dbapp/users/create \
+# -d "username=user1" \
+# -d "email=user1@mail.org"

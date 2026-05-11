@@ -7,4 +7,5 @@ urlpatterns = [
     path('search', views.search_courses),
     path('courses/', views.list_courses),
     path('courses/create', views.create_course),
+    path('users/create', views.create_user),
 ]
