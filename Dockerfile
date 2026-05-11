@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install  --no-cache-dir -r /app/requirements.txt
+RUN pip install --upgrade pip && pip install  --no-cache-dir -r requirements.txt
 
 # Весь (почти) Django-проект будет скопирован
 COPY project/ .
